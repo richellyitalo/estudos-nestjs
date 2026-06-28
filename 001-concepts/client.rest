@@ -1,0 +1,23 @@
+@baseUrl = http://localhost:3000/
+
+### AppController->Home
+# @name AppControllerHome
+GET {{baseUrl}}hello/world
+
+
+### BaseManualController->getHello
+# @name BaseManualControllerHome
+GET {{baseUrl}}
+
+
+### BaseCliController->home
+# @name BaseCliControllerHome
+GET {{baseUrl}}/base-cli
+
+### BaseCliController->about
+# @name BaseCliControllerAbout
+GET {{baseUrl}}base-cli/about
+
+### GamesController->all
+# @name GamesControllerAll
+GET {{baseUrl}}games
