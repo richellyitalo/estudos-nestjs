@@ -1,9 +1,9 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get } from '@nestjs/common';
 
 @Controller()
 export class BaseManualController {
-    @Get()
-    getHello(): number[] {
-        return [1, 2, 3];
-    }
+  @Get()
+  getHello(): number[] {
+    return [1, 2, 3];
+  }
 }
