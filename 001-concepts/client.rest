@@ -14,6 +14,7 @@ GET {{baseUrl}}
 # @name BaseCliControllerHome
 GET {{baseUrl}}/base-cli
 
+
 ### BaseCliController->about
 # @name BaseCliControllerAbout
 GET {{baseUrl}}base-cli/about
@@ -25,25 +26,35 @@ GET {{baseUrl}}base-cli/about
 # @name GamesControllerAll
 GET {{baseUrl}}games?pagination=5&offset=3
 
+
+### GamesController->findOne
+GET {{baseUrl}}games/1
+
+
 ### GamesController->findOneByCategory
 # @name GamesControllerByCategoryNameAndId
-GET {{baseUrl}}games/Ação/2
+GET {{baseUrl}}games/acao/1
+
+
 ### GamesController->create
 POST {{baseUrl}}games
 Content-type: application/json
 
 {
-    "name": "Spider Man",
+    "name": "Hulk",
+    "categoryId": 2,
     "year": 2025
 }
 
+
 ### GamesController->patch
-PATCH {{baseUrl}}games/33
+PATCH {{baseUrl}}games/1
 Content-type: application/json
 
 {
-    "name": "Spideman 2025"
+    "categoryId": 2
 }
 
+
 ### GamesController->delete
-DELETE {{baseUrl}}games/35
+DELETE {{baseUrl}}games/2
