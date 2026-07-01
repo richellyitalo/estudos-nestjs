@@ -1,6 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import Game from './entity/game.entity';
 import GameCategory from './entity/game-category.entity';
+import { CreateGameDto } from './dto/create-game-dto';
+import { UpdateGameDto } from './dto/update-game-dto';
 
 @Injectable()
 export default class GamesService {
@@ -89,27 +91,27 @@ export default class GamesService {
     return game;
   }
 
-  create(data: any): any {
+  create(createGameDto: CreateGameDto): any {
     this.lastId++;
     const id = this.lastId;
     const created = new Date();
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const newGame = {
+    console.log(createGameDto);
+
+    const newGame: Game = {
       id,
       created,
-      ...data,
+      ...createGameDto,
     };
 
-    this.games.push(newGame as Game);
+    this.games.push(newGame);
 
-    // eslint-disable-next-line
     newGame.category = this.getCategoryById(newGame.categoryId);
 
     return newGame;
   }
 
-  patch(id: number, data: any): any {
+  patch(id: number, updateGameDto: UpdateGameDto): any {
     const gameIndex = this.games.findIndex(game => game.id === +id);
     if (gameIndex < 0) {
       this.dispatchNotFoundException();
@@ -120,7 +122,7 @@ export default class GamesService {
     // eslint-disable-next-line
     const gamePatched = {
       ...game,
-      ...data,
+      ...updateGameDto,
       id,
     };
 

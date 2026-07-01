@@ -36,14 +36,14 @@ GET {{baseUrl}}games/1
 GET {{baseUrl}}games/acao/1
 
 
-### GamesController->create
+### GamesController CREATE
 POST {{baseUrl}}games
 Content-type: application/json
 
 {
-    "name": "Hulk",
+    "name": "One",
     "categoryId": 2,
-    "year": 2025
+    "year": 1994
 }
 
 
@@ -52,7 +52,7 @@ PATCH {{baseUrl}}games/1
 Content-type: application/json
 
 {
-    "categoryId": 2
+    "categoryId":1
 }
 
 

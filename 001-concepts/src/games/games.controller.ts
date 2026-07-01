@@ -11,6 +11,8 @@ import {
   Query,
 } from '@nestjs/common';
 import GamesService from './games.service';
+import { CreateGameDto } from './dto/create-game-dto';
+import { UpdateGameDto } from './dto/update-game-dto';
 
 interface QueryAll {
   pagination?: number;
@@ -45,14 +47,14 @@ export class GamesController {
 
   @HttpCode(HttpStatus.CREATED)
   @Post()
-  create(@Body() body: any): any {
+  create(@Body() createGameDto: CreateGameDto): any {
     // create(@Body('name') name: string): string {
-    return this.gamesService.create(body);
+    return this.gamesService.create(createGameDto);
   }
 
   @Patch(':id')
-  patch(@Param('id') id: string, @Body() body: object): any {
-    return this.gamesService.patch(+id, body);
+  patch(@Param('id') id: string, @Body() updateGameDto: UpdateGameDto): any {
+    return this.gamesService.patch(+id, updateGameDto);
   }
 
   @Delete(':id')
