@@ -44,8 +44,8 @@ export default class GamesService {
     });
   }
 
-  findOne(id: string) {
-    const game = this.games.find(game => game.id === +id);
+  findOne(id: number) {
+    const game = this.games.find(game => game.id === id);
     if (!game) {
       this.dispatchNotFoundException();
     }
