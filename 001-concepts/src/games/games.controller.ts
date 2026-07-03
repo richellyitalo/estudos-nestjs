@@ -34,6 +34,7 @@ export class GamesController {
 
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
+    console.log(process.env.ENVIRONMENT);
     return this.gamesService.findOne(id);
   }
 
