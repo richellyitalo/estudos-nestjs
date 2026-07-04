@@ -28,21 +28,23 @@ GET {{baseUrl}}games?pagination=5&offset=3
 
 
 ### GamesController->findOne
-GET {{baseUrl}}games/1
+GET {{baseUrl}}games/3
 
 
 ### GamesController->findOneByCategory
 # @name GamesControllerByCategoryNameAndId
-GET {{baseUrl}}games/acao/1
+GET {{baseUrl}}games/acao/3
 
 
-### GamesController CREATE
+### GamesController create
+
+# @name GameController->create
 POST {{baseUrl}}games
 Content-type: application/json
 
 {
     "name": "One",
-    "categoryId": 2,
+    "categoryId": 1,
     "year": 1994
 }
 
@@ -57,4 +59,4 @@ Content-type: application/json
 
 
 ### GamesController->delete
-DELETE {{baseUrl}}games/2
+DELETE {{baseUrl}}games/1

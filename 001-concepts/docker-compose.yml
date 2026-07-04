@@ -17,22 +17,22 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
       - WATCHPACK_POLLING=true
-      - DB_HOST=postgres
-      - DB_PORT=5432
-      - DB_USER=postgres
-      - DB_PASS=postgres
-      - DB_NAME=app_db
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_NAME=${DB_NAME}
 
     depends_on:
       - postgress
 
   postgress:
     image: postgres:15
-    restart: always
+    # restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: app_db
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
     container_name: postgres
     volumes:
       - ./pgdata:/var/lib/postgresql/data
@@ -41,7 +41,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
-    restart: always
+    # restart: always
     container_name: nest-pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com

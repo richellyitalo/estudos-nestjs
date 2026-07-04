@@ -34,7 +34,6 @@ export class GamesController {
 
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
-    console.log(process.env.ENVIRONMENT);
     return this.gamesService.findOne(id);
   }
 
@@ -60,8 +59,8 @@ export class GamesController {
   }
 
   @Delete(':id')
-  delete(@Param('id') id: string): string {
-    this.gamesService.delete(+id);
+  async delete(@Param('id', ParseIntPipe) id: number): Promise<string> {
+    await this.gamesService.delete(id);
     return 'Game excluído com sucesso!';
   }
 }
