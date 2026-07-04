@@ -14,7 +14,7 @@ export default class GamesService {
     private readonly gameCategoryRepository: Repository<GameCategory>,
   ) {}
 
-  dispatchNotFoundException(message?: string) {
+  private dispatchNotFoundException(message?: string) {
     throw new NotFoundException(message ?? '😭 Game não encontrado.');
   }
 
@@ -67,33 +67,19 @@ export default class GamesService {
     return await this.gameRepository.save(game);
   }
 
-  patch(id: number, updateGameDto: UpdateGameDto): any {
+  async patch(id: number, updateGameDto: UpdateGameDto): Promise<Game | void> {
     const gameData = {
       id,
       ...updateGameDto,
     };
 
-    const game = this.gameRepository.preload(gameData);
-    // const gameIndex = this.games.findIndex(game => game.id === +id);
-    // if (gameIndex < 0) {
-    //   this.dispatchNotFoundException();
-    // }
+    const game = await this.gameRepository.preload(gameData);
 
-    // const game = this.games[gameIndex];
+    if (!game) return this.dispatchNotFoundException();
 
-    // // eslint-disable-next-line
-    // const gamePatched = {
-    //   ...game,
-    //   ...updateGameDto,
-    //   id,
-    // };
+    const res = await this.gameRepository.save(game);
 
-    // this.games[gameIndex] = gamePatched; // eslint-disable-line
-
-    // eslint-disable-next-line
-    // gamePatched.category = this.getCategoryById(gamePatched.categoryId);
-
-    // return gamePatched;
+    return res;
   }
 
   async delete(id: number) {

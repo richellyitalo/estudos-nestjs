@@ -1,4 +1,17 @@
 services:
+  postgress:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+    container_name: postgres
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
   app:
     container_name: nestjs-app
     build: .
@@ -26,22 +39,9 @@ services:
     depends_on:
       - postgress
 
-  postgress:
-    image: postgres:15
-    # restart: always
-    environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASS}
-      POSTGRES_DB: ${DB_NAME}
-    container_name: postgres
-    volumes:
-      - ./pgdata:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-
   pgadmin:
     image: dpage/pgadmin4
-    # restart: always
+    restart: always
     container_name: nest-pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com

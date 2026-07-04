@@ -43,20 +43,60 @@ POST {{baseUrl}}games
 Content-type: application/json
 
 {
-    "name": "One",
+    "name": "Soul Reaver",
     "categoryId": 1,
-    "year": 1994
+    "year": 1998
 }
 
 
 ### GamesController->patch
-PATCH {{baseUrl}}games/1
+PATCH {{baseUrl}}games/3
 Content-type: application/json
 
 {
+    "name": "Que nome5",
     "categoryId":1
 }
 
 
 ### GamesController->delete
 DELETE {{baseUrl}}games/1
+
+
+### ----------- CATEGORY
+
+# --------- GAMES ---------------
+
+### CategoryController->all
+# @name CategoryControllerAll
+GET {{baseUrl}}categories?pagination=5&offset=3
+
+
+### CategoriesController->findOne
+GET {{baseUrl}}categories/1
+
+
+### CategoriesController create
+
+# @name CategoryController->create
+POST {{baseUrl}}categories
+Content-type: application/json
+
+{
+    "name": "Aventura",
+    "slug": "aventura"
+}
+
+
+### CategoriesController->update
+PATCH {{baseUrl}}categories/20
+Content-type: application/json
+
+{
+    "name": "Terror",
+    "slug": "terror"
+}
+
+
+### CategoriesController->delete
+DELETE {{baseUrl}}categories/1

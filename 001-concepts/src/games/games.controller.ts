@@ -24,8 +24,6 @@ interface QueryAll {
 export class GamesController {
   constructor(private readonly gamesService: GamesService) {}
 
-  private readonly games: string[] = ['COD', 'BF6', 'FIFA 24', 'Black Ops 4'];
-
   @Get()
   all(@Query() query: QueryAll) {
     const { pagination = 10, offset = 0 } = query; // eslint-disable-line
@@ -54,8 +52,11 @@ export class GamesController {
   }
 
   @Patch(':id')
-  patch(@Param('id') id: string, @Body() updateGameDto: UpdateGameDto): any {
-    return this.gamesService.patch(+id, updateGameDto);
+  patch(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateGameDto: UpdateGameDto,
+  ): any {
+    return this.gamesService.patch(id, updateGameDto);
   }
 
   @Delete(':id')

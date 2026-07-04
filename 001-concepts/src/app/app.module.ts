@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { GamesModule } from 'src/games/games.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CategoryModule } from 'src/category/category.module';
 
 // Config: DB
 const dbConnectionOptions: object = {
@@ -24,6 +25,7 @@ const dbConnectionOptions: object = {
       synchronize: true, // sincroniza as entidades com o banco de dados
     }),
     GamesModule,
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
