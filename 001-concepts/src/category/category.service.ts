@@ -7,7 +7,7 @@ import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Category } from './entities/category.entity';
-import { QueryFailedError, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class CategoryService {
@@ -19,7 +19,6 @@ export class CategoryService {
   async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
     const data = {
       ...createCategoryDto,
-      slug: createCategoryDto.slug.toLowerCase(),
     };
     try {
       const category = this.categoryRepository.create(data);
@@ -27,8 +26,8 @@ export class CategoryService {
 
       return category;
     } catch (error: any) {
+      // eslint-disable-next-line
       if (error.code === '23505') {
-        // eslint-disable-line
         throw new ConflictException(
           `Já existe uma categoria com o mesmo slug '${data.slug}'`,
         );
@@ -39,11 +38,22 @@ export class CategoryService {
   }
 
   async findAll(): Promise<Category[]> {
-    return await this.categoryRepository.find();
+    return await this.categoryRepository.find({
+      order: {
+        id: 'desc',
+      },
+    });
   }
 
   async findOne(id: number): Promise<Category> {
-    const category = await this.categoryRepository.findOneBy({ id });
+    const category = await this.categoryRepository.findOne({
+      where: {
+        id,
+      },
+      // relations: {
+      //   games: true,
+      // },
+    });
 
     if (!category) throw new NotFoundException('Categoria não encontrada');
 
@@ -67,8 +77,8 @@ export class CategoryService {
 
       return category;
     } catch (error: any) {
+      // eslint-disable-next-line
       if (error.code === '23505') {
-        // eslint-disable-line
         throw new ConflictException(
           `Já existe uma categoria com o mesmo slug '${data.slug}'`,
         );
@@ -83,8 +93,6 @@ export class CategoryService {
 
     if (!category) throw new NotFoundException('Categoria não encontrada.');
 
-    await this.categoryRepository.remove(category);
-
-    return category;
+    return await this.categoryRepository.remove(category);
   }
 }

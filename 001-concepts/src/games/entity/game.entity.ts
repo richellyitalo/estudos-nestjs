@@ -2,10 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import GameCategory from './game-category.entity';
+import { Category } from 'src/category/entities/category.entity';
 
 @Entity('games')
 export default class Game {
@@ -18,8 +20,9 @@ export default class Game {
   @Column()
   year: number;
 
-  @Column()
-  categoryId: number;
+  @ManyToOne(() => Category, category => category.games)
+  @JoinColumn({ name: 'category_id' })
+  category: Category;
 
   @CreateDateColumn()
   createdAt?: Date;

@@ -23,17 +23,17 @@ GET {{baseUrl}}base-cli/about
 # --------- GAMES ---------------
 
 ### GamesController->all
-# @name GamesControllerAll
+# @name GamesControllerAllc
 GET {{baseUrl}}games?pagination=5&offset=3
 
 
 ### GamesController->findOne
-GET {{baseUrl}}games/3
+GET {{baseUrl}}games/18
 
 
 ### GamesController->findOneByCategory
 # @name GamesControllerByCategoryNameAndId
-GET {{baseUrl}}games/acao/3
+GET {{baseUrl}}games/acao/17
 
 
 ### GamesController create
@@ -43,19 +43,19 @@ POST {{baseUrl}}games
 Content-type: application/json
 
 {
-    "name": "Soul Reaver",
-    "categoryId": 1,
-    "year": 1998
+    "name": "Resident Evil",
+    "categoryId": 26,
+    "year": 2015
 }
 
 
 ### GamesController->patch
-PATCH {{baseUrl}}games/3
+PATCH {{baseUrl}}games/17
 Content-type: application/json
 
 {
-    "name": "Que nome5",
-    "categoryId":1
+    "name": "Bomber Man 3",
+    "categoryId": 27
 }
 
 
@@ -73,7 +73,7 @@ GET {{baseUrl}}categories?pagination=5&offset=3
 
 
 ### CategoriesController->findOne
-GET {{baseUrl}}categories/1
+GET {{baseUrl}}categories/25
 
 
 ### CategoriesController create
@@ -83,8 +83,8 @@ POST {{baseUrl}}categories
 Content-type: application/json
 
 {
-    "name": "Aventura",
-    "slug": "aventura"
+    "name": "Sobrevivência",
+    "slug": "sobrevivencia"
 }
 
 
@@ -99,4 +99,4 @@ Content-type: application/json
 
 
 ### CategoriesController->delete
-DELETE {{baseUrl}}categories/1
+DELETE {{baseUrl}}categories/26

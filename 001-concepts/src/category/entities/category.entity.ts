@@ -1,10 +1,11 @@
-import { IsNotEmpty } from 'class-validator';
+import Game from 'src/games/entity/game.entity';
 import {
   BeforeInsert,
   BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -26,6 +27,10 @@ export class Category {
   @UpdateDateColumn()
   updatedAt?: Date;
 
+  @OneToMany(() => Game, game => game.category)
+  games: Game[];
+
+  // Triggers
   @BeforeInsert()
   @BeforeUpdate()
   setSlugLower() {

@@ -3,10 +3,10 @@ import { GamesController } from './games.controller';
 import GamesService from './games.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import Game from './entity/game.entity';
-import GameCategory from './entity/game-category.entity';
+import { CategoryModule } from 'src/category/category.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Game, GameCategory])],
+  imports: [TypeOrmModule.forFeature([Game]), CategoryModule],
   controllers: [GamesController],
   providers: [GamesService],
 })

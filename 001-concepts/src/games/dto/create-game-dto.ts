@@ -2,6 +2,7 @@ import {
   IsInt,
   IsNotEmpty,
   IsNumber,
+  IsPositive,
   IsString,
   Max,
   Min,
@@ -21,6 +22,7 @@ export class CreateGameDto {
   readonly year: number;
 
   @IsNumber()
+  @IsPositive()
   @IsNotEmpty()
   readonly categoryId: number;
 }

@@ -1,0 +1,6 @@
+DB:
+    ☐ +modulo users
+    ☐ vincular entidades entre entidades (ManyToOne, OneToMany, JoinColumn)
+    ☐ Exportar módulos para reutilizar as funcoes do service
+    ☐ Salvar registro de game com relation
+    

@@ -38,9 +38,8 @@ export class GamesController {
   @Get(':categorySlug/:id')
   findOneByCategory(
     @Param('categorySlug') categorySlug: string,
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
   ) {
-    // @Param() params: any
     return this.gamesService.findOneByIdInCategorySlug(categorySlug, id);
   }
 
