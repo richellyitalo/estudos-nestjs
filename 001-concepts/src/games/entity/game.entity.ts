@@ -24,6 +24,9 @@ export default class Game {
   @JoinColumn({ name: 'category_id' })
   category: Category;
 
+  @Column({ name: 'category_id' })
+  categoryId: number;
+
   @CreateDateColumn()
   createdAt?: Date;
 

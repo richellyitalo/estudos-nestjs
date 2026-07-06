@@ -88,6 +88,12 @@ export class CategoryService {
     }
   }
 
+  async findOneBySlug(slug: string): Promise<Category> {
+    const category = await this.categoryRepository.findOneBy({ slug });
+    if (!category) throw new NotFoundException('Categoria não encontrada.');
+    return category;
+  }
+
   async remove(id: number): Promise<Category> {
     const category = await this.categoryRepository.findOneBy({ id });
 

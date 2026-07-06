@@ -13,7 +13,7 @@ export default class GamesService {
     private readonly categoryService: CategoryService,
   ) {}
 
-  private dispatchNotFoundException(message?: string) {
+  private dispatchNotFoundException(message?: string): never {
     throw new NotFoundException(message ?? '😭 Game não encontrado.');
   }
 
@@ -56,27 +56,39 @@ export default class GamesService {
     return game;
   }
 
-  findOneByIdInCategorySlug(categorySlug: string, id: number): null {
-    return null;
-    // const category = await this.gameCategoryRepository.findOneBy({
-    //   slug: categorySlug,
-    // });
-    // if (!category) {
-    //   this.dispatchNotFoundException(
-    //     `Categoria '${categorySlug}' não encontrada`,
-    //   );
-    // }
+  async findOneByIdInCategorySlug(
+    categorySlug: string,
+    id: number,
+  ): Promise<Game> {
+    const category = await this.categoryService.findOneBySlug(categorySlug);
+    if (!category) {
+      this.dispatchNotFoundException(
+        `Categoria '${categorySlug}' não encontrada`,
+      );
+    }
 
     // const game = await this.gameRepository.findOneBy({
     //   id,
-    //   categoryId: category!.id,
+    //   category: {
+    //     id: category.id,
+    //   },
     // });
 
-    // if (!game) return this.dispatchNotFoundException();
+    const game = await this.gameRepository.findOneBy({
+      id,
+      categoryId: category.id,
+    });
 
-    // game['category'] = category;
+    if (!game) this.dispatchNotFoundException();
 
-    // return game;
+    return {
+      ...game,
+      category: {
+        id: category.id,
+        name: category.name,
+        slug: category.slug,
+      },
+    } as Game;
   }
 
   async create(createGameDto: CreateGameDto): Promise<any> {

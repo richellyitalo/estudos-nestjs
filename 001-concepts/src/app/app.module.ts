@@ -5,6 +5,7 @@ import { GamesModule } from 'src/games/games.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CategoryModule } from 'src/category/category.module';
+import UsersModule from 'src/users/users.module';
 
 // Config: DB
 const dbConnectionOptions: object = {
@@ -26,6 +27,7 @@ const dbConnectionOptions: object = {
     }),
     GamesModule,
     CategoryModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

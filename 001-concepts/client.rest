@@ -33,7 +33,7 @@ GET {{baseUrl}}games/18
 
 ### GamesController->findOneByCategory
 # @name GamesControllerByCategoryNameAndId
-GET {{baseUrl}}games/acao/17
+GET {{baseUrl}}games/terror/19
 
 
 ### GamesController create
@@ -100,3 +100,16 @@ Content-type: application/json
 
 ### CategoriesController->delete
 DELETE {{baseUrl}}categories/26
+
+
+# ------------- USERS ----------------
+
+### UsersController :: signup
+POST {{baseUrl}}users/signup
+Content-type: application/json
+
+{
+    "name": "Rich",
+    "email": "rich2@email.com",
+    "password": "123456"
+}
