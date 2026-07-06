@@ -1,6 +1,7 @@
 import Game from 'src/games/entity/game.entity';
 import {
   BeforeInsert,
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
@@ -33,6 +34,7 @@ export class User {
   updatedAt?: Date;
 
   @BeforeInsert()
+  @BeforeUpdate()
   setHashPassword() {
     this.password = `HASH=${this.password}`;
   }

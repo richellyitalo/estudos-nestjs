@@ -22,7 +22,7 @@ export default class Game {
   year: number;
 
   @ManyToOne(() => User, user => user.games)
-  @JoinColumn({ name: 'user_id' })
+  @JoinColumn({ name: 'user_id2' })
   user: User;
 
   @Column({ name: 'user_id' })

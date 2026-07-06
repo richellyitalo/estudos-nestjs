@@ -113,3 +113,14 @@ Content-type: application/json
     "email": "rich2@email.com",
     "password": "123456"
 }
+
+
+### UsersController :: update
+PATCH {{baseUrl}}users/5
+Content-type: application/json
+
+{
+    "name": "Rich 2",
+    "email": "rich2@email.com",
+    "password": "senha-nova"
+}
