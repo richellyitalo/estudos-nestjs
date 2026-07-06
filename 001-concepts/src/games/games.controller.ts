@@ -14,20 +14,15 @@ import {
 import GamesService from './games.service';
 import { CreateGameDto } from './dto/create-game-dto';
 import { UpdateGameDto } from './dto/update-game-dto';
-
-interface QueryAll {
-  pagination?: number;
-  offset?: number;
-}
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Controller('games')
 export class GamesController {
   constructor(private readonly gamesService: GamesService) {}
 
   @Get()
-  all(@Query() query: QueryAll) {
-    const { pagination = 10, offset = 0 } = query; // eslint-disable-line
-    return this.gamesService.getAll();
+  async all(@Query() paginationDto: PaginationDto) {
+    return await this.gamesService.getAll(paginationDto);
   }
 
   @Get(':id')

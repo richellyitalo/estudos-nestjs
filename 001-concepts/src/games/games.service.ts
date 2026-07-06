@@ -5,6 +5,7 @@ import { UpdateGameDto } from './dto/update-game-dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CategoryService } from 'src/category/category.service';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Injectable()
 export default class GamesService {
@@ -17,11 +18,15 @@ export default class GamesService {
     throw new NotFoundException(message ?? '😭 Game não encontrado.');
   }
 
-  async getAll(): Promise<Game[]> {
+  async getAll(paginationDto: PaginationDto): Promise<Game[]> {
+    const { limit = 10, offset = 0 } = paginationDto;
+
     const games = await this.gameRepository.find({
       relations: {
         category: true,
       },
+      take: limit,
+      skip: offset,
       select: {
         category: {
           id: true,
@@ -96,7 +101,9 @@ export default class GamesService {
   }
 
   async create(createGameDto: CreateGameDto): Promise<any> {
-    const ID_USER: number = 5;
+    // TODO: resgatar id da sessao
+    const ID_USER: number = 9;
+
     const category = await this.categoryService.findOne(
       createGameDto.categoryId,
     );
