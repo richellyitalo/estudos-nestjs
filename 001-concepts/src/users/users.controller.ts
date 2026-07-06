@@ -11,24 +11,25 @@ import {
 import { CreateUserDto } from './dto/create-user.dto';
 import UsersService from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './entity/user.entity';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  all() {
-    return '/all';
+  async all() {
+    return await this.usersService.all();
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return '/:id 👉 ' + id;
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<User | null> {
+    return await this.usersService.findOne(id);
   }
 
-  @Post('signup')
-  async signup(@Body() createUserDto: CreateUserDto) {
-    return await this.usersService.signup(createUserDto);
+  @Post('create')
+  async create(@Body() createUserDto: CreateUserDto) {
+    return await this.usersService.create(createUserDto);
   }
 
   @Patch(':id')
@@ -41,7 +42,7 @@ export class UsersController {
   }
 
   @Delete(':id')
-  delete(@Param('id', ParseIntPipe) id: number) {
-    return ':DELETE 👉 ' + id;
+  async delete(@Param('id', ParseIntPipe) id: number) {
+    return await this.usersService.delete(id);
   }
 }

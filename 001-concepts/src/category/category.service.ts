@@ -8,6 +8,7 @@ import { UpdateCategoryDto } from './dto/update-category.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Category } from './entities/category.entity';
 import { Repository } from 'typeorm';
+import { PostgresErrorCode } from 'src/database/postgres-error-code.enum';
 
 @Injectable()
 export class CategoryService {
@@ -27,7 +28,7 @@ export class CategoryService {
       return category;
     } catch (error: any) {
       // eslint-disable-next-line
-      if (error.code === '23505') {
+      if (error.code === PostgresErrorCode.UNIQUE_VIOLATION) {
         throw new ConflictException(
           `Já existe uma categoria com o mesmo slug '${data.slug}'`,
         );

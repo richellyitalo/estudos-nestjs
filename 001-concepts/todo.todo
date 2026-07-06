@@ -1,6 +1,6 @@
 DB:
     ✔ +modulo users @done(26-07-05 23:27)
-    ☐ vincular entidades entre entidades (ManyToOne, OneToMany, JoinColumn)
+    ✔ vincular entidades entre entidades (ManyToOne, OneToMany, JoinColumn) @done(26-07-06 12:02)
     ☐ Exportar módulos para reutilizar as funcoes do service
-    ☐ Salvar registro de game com relation
+    ✔ Salvar registro de game com relation @done(26-07-06 12:03)
     

@@ -104,23 +104,31 @@ DELETE {{baseUrl}}categories/26
 
 # ------------- USERS ----------------
 
-### UsersController :: signup
-POST {{baseUrl}}users/signup
+### UsersController :: create
+POST {{baseUrl}}users/create
 Content-type: application/json
 
 {
     "name": "Rich",
-    "email": "rich2@email.com",
+    "email": "rich@email.com",
     "password": "123456"
 }
 
 
 ### UsersController :: update
-PATCH {{baseUrl}}users/5
+PATCH {{baseUrl}}users/32
 Content-type: application/json
 
 {
-    "name": "Rich 2",
-    "email": "rich2@email.com",
-    "password": "senha-nova"
+    "name": "Riche I52239iI",
+    "email": "rich-iii@email.com",
+    "password": "yoyo-123"
 }
+
+
+### UsersController :: all
+GET {{baseUrl}}users/
+
+
+### UsersController :: delete
+DELETE {{baseUrl}}users/5
