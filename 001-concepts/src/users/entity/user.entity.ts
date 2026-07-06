@@ -1,8 +1,10 @@
+import Game from 'src/games/entity/game.entity';
 import {
   BeforeInsert,
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -20,6 +22,9 @@ export class User {
 
   @Column({ length: 255 })
   password: string;
+
+  @OneToMany(() => Game, game => game.user)
+  games: Game[];
 
   @CreateDateColumn()
   createdAt?: Date;

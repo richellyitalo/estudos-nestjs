@@ -8,6 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Category } from 'src/category/entities/category.entity';
+import { User } from 'src/users/entity/user.entity';
 
 @Entity('games')
 export default class Game {
@@ -19,6 +20,13 @@ export default class Game {
 
   @Column()
   year: number;
+
+  @ManyToOne(() => User, user => user.games)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
+
+  @Column({ name: 'user_id' })
+  userId: number;
 
   @ManyToOne(() => Category, category => category.games)
   @JoinColumn({ name: 'category_id' })

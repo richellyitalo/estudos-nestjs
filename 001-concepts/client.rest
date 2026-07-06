@@ -28,7 +28,7 @@ GET {{baseUrl}}games?pagination=5&offset=3
 
 
 ### GamesController->findOne
-GET {{baseUrl}}games/18
+GET {{baseUrl}}games/24
 
 
 ### GamesController->findOneByCategory
@@ -44,7 +44,7 @@ Content-type: application/json
 
 {
     "name": "Resident Evil",
-    "categoryId": 26,
+    "categoryId": 20,
     "year": 2015
 }
 

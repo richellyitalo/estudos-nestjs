@@ -41,8 +41,12 @@ export default class GamesService {
       },
       relations: {
         category: true,
+        user: true,
       },
       select: {
+        user: {
+          name: true,
+        },
         category: {
           id: true,
           name: true,
@@ -92,6 +96,7 @@ export default class GamesService {
   }
 
   async create(createGameDto: CreateGameDto): Promise<any> {
+    const ID_USER: number = 5;
     const category = await this.categoryService.findOne(
       createGameDto.categoryId,
     );
@@ -102,6 +107,9 @@ export default class GamesService {
       name,
       year,
       category,
+      user: {
+        id: ID_USER,
+      },
     });
 
     await this.gameRepository.save(game);
