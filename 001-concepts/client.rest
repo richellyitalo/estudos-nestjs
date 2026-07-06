@@ -24,7 +24,7 @@ GET {{baseUrl}}base-cli/about
 
 ### GamesController->all
 # @name GamesControllerAllc
-GET {{baseUrl}}games?limit=3&offset=2
+GET {{baseUrl}}games?limit=1&offset=2
 
 
 ### GamesController->findOne
