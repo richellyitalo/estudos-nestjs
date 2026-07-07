@@ -10,11 +10,13 @@ import {
   Patch,
   Post,
   Query,
+  UsePipes,
 } from '@nestjs/common';
 import GamesService from './games.service';
 import { CreateGameDto } from './dto/create-game-dto';
 import { UpdateGameDto } from './dto/update-game-dto';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
+import { ParseIdAsNumberPipe } from 'src/common/pipes/parse-id-as-number.pipe';
 
 @Controller('games')
 export class GamesController {
@@ -26,7 +28,12 @@ export class GamesController {
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
+  // @UsePipes(new ParseIntPipe({ errorHttpStatusCode: HttpStatus.BAD_REQUEST }))
+  findOne(
+    @Param('id', ParseIdAsNumberPipe)
+    id: number,
+  ) {
+    console.log(id, typeof id);
     return this.gamesService.findOne(id);
   }
 

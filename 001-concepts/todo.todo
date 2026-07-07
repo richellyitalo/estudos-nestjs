@@ -4,3 +4,20 @@ DB:
     ☐ Exportar módulos para reutilizar as funcoes do service
     ✔ Salvar registro de game com relation @done(26-07-06 12:03)
     
+Pipes:
+    ✔ Utilizar pipes no controller: UsePipes @done(26-07-06 22:19)
+    ✔ Utilizar UsePipes numa rota específica @done(26-07-06 22:19)
+    ✔ utilizar UsePipes com "new" @done(26-07-06 22:26)
+    ☐ Criar um pipe em 'common/pipes/' que converte todos parametros 'id' para int
+
+Interceptos:
+    ☐ Criar interceptors 'src/common/interceptors/FILE'
+        https://github.com/luizomf/conceitos_nest/commit/70deff108ab55a173110f947bd6e2dd60b0257ac
+        ☐ Que adicione um valor ao header (x-token-length)
+        ☐ De execução de tempo da chamada
+            - utiliza tap (rxjs)
+            https://github.com/luizomf/conceitos_nest/commit/e71db18af711bbd9428b4815cc70d5985e43f354
+        ☐ Criar interceptor que converter o tipo de um erro para outro
+        
+    ☐ Utilizar interceptor no método e no controller
+

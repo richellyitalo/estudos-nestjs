@@ -23,12 +23,12 @@ GET {{baseUrl}}base-cli/about
 # --------- GAMES ---------------
 
 ### GamesController->all
-# @name GamesControllerAllc
+# @name GamesControllerAll
 GET {{baseUrl}}games?limit=1&offset=2
 
 
 ### GamesController->findOne
-GET {{baseUrl}}games/24
+GET {{baseUrl}}games/24a
 
 
 ### GamesController->findOneByCategory
