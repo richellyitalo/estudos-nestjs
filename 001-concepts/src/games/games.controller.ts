@@ -10,15 +10,23 @@ import {
   Patch,
   Post,
   Query,
-  UsePipes,
+  UseInterceptors,
 } from '@nestjs/common';
 import GamesService from './games.service';
 import { CreateGameDto } from './dto/create-game-dto';
 import { UpdateGameDto } from './dto/update-game-dto';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
 import { ParseIdAsNumberPipe } from 'src/common/pipes/parse-id-as-number.pipe';
+import { TimingInterceptor } from 'src/common/interceptors/timing.interceptor';
+import { AddHeadeResponseTimeInterceptor } from 'src/common/interceptors/add-header-response-time.interceptor';
+import { HandlingErrorInterceptor } from 'src/common/interceptors/handling-error.interceptor';
 
 @Controller('games')
+@UseInterceptors(
+  TimingInterceptor,
+  AddHeadeResponseTimeInterceptor,
+  HandlingErrorInterceptor,
+)
 export class GamesController {
   constructor(private readonly gamesService: GamesService) {}
 
@@ -33,7 +41,6 @@ export class GamesController {
     @Param('id', ParseIdAsNumberPipe)
     id: number,
   ) {
-    console.log(id, typeof id);
     return this.gamesService.findOne(id);
   }
 

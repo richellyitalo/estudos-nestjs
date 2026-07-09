@@ -24,16 +24,16 @@ GET {{baseUrl}}base-cli/about
 
 ### GamesController->all
 # @name GamesControllerAll
-GET {{baseUrl}}games?limit=1&offset=2
+GET {{baseUrl}}games?limit=2&offset=2
 
 
 ### GamesController->findOne
-GET {{baseUrl}}games/24a
+GET {{baseUrl}}games/399
 
 
 ### GamesController->findOneByCategory
 # @name GamesControllerByCategoryNameAndId
-GET {{baseUrl}}games/terror/19
+GET {{baseUrl}}games/terror/39
 
 
 ### GamesController create
