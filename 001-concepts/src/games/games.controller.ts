@@ -10,19 +10,26 @@ import {
   Patch,
   Post,
   Query,
+  Req,
+  UseInterceptors,
 } from '@nestjs/common';
 import GamesService from './games.service';
 import { CreateGameDto } from './dto/create-game-dto';
 import { UpdateGameDto } from './dto/update-game-dto';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
 import { ParseIdAsNumberPipe } from 'src/common/pipes/parse-id-as-number.pipe';
+import { AuthTokenInterceptor } from 'src/common/interceptors/auth-token.interceptor';
+import type { Request } from 'express';
 
+@UseInterceptors(AuthTokenInterceptor)
 @Controller('games')
 export class GamesController {
   constructor(private readonly gamesService: GamesService) {}
 
   @Get()
-  async all(@Query() paginationDto: PaginationDto) {
+  // @UseInterceptors(CountArrayLengthInterceptorInterceptor)
+  async all(@Query() paginationDto: PaginationDto, @Req() request: Request) {
+    console.log('GamesController@Request', request['user']);
     return await this.gamesService.getAll(paginationDto);
   }
 

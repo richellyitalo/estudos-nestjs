@@ -20,7 +20,14 @@ Interceptos:
             - utiliza tap (rxjs)
             https://github.com/luizomf/conceitos_nest/commit/e71db18af711bbd9428b4815cc70d5985e43f354
         ✔ Criar interceptor que converter o tipo de um erro para outro @done(26-07-09 19:04)
-        
-        
+        ✔ Contador de um array com totalizador num novo índice @done(26-07-09 20:29)
+        ✔ criar interceptor de token @done(26-07-10 11:20)
     ✔ Utilizar interceptor no método e no controller @done(26-07-09 15:33)
+
+Middlewares:
+    ✔ que transfere valor via request para controller(@Req() req) @done(26-07-10 14:39)
+    ☐ que executa comando após chamar proximo middleware(next())
+    ✔ que retorna erro erro e mata a aplicação (throw new BadGateway) @done(26-07-10 13:31)
+    ✔ que retorne valor no cabeçalho @done(26-07-10 13:29)
+
 
