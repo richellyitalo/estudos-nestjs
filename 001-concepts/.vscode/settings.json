@@ -1,6 +1,15 @@
 {
     "auto-scroll.enabled": true,
     "typewriterAutoScroll.enable": true,
-    "editor.indentSize": 2
-
+    "editor.indentSize": 2,
+    "[typescript]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false
+    },
+    "[typescriptreact]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false
+    }
 }

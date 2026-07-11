@@ -11,6 +11,7 @@ async function bootstrap() {
       transform: false,
     }),
   );
+  // app.useGlobalFilters(new BadRequestExceptionFilter());
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();

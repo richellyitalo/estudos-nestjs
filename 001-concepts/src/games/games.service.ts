@@ -171,4 +171,15 @@ export default class GamesService {
     // retorna instancia sem o campo ID
     return await this.gameRepository.remove(game);
   }
+
+  async getLast(): Promise<Game | null> {
+    const game = await this.gameRepository.find({
+      take: 1,
+      order: {
+        id: 'desc',
+      },
+    });
+
+    return game[0] ?? null;
+  }
 }

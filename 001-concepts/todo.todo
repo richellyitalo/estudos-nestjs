@@ -3,14 +3,14 @@ Outros:
 DB:
     ✔ +modulo users @done(26-07-05 23:27)
     ✔ vincular entidades entre entidades (ManyToOne, OneToMany, JoinColumn) @done(26-07-06 12:02)
-    ☐ Exportar módulos para reutilizar as funcoes do service
+    ✔ Exportar módulos para reutilizar as funcoes do service @done(26-07-10 18:48)
     ✔ Salvar registro de game com relation @done(26-07-06 12:03)
     
 Pipes:
     ✔ Utilizar pipes no controller: UsePipes @done(26-07-06 22:19)
     ✔ Utilizar UsePipes numa rota específica @done(26-07-06 22:19)
     ✔ utilizar UsePipes com "new" @done(26-07-06 22:26)
-    ✔ Criar um pipe em 'common/pipes/' que converte todos parametros 'id' para int @done(26-07-08 17:36)
+    ✔ Criar um pipe em 'common/pipes/' que converte todos parametros 'id' para int @done(26-07-10 22:33)
 
 Interceptos:
     ✔ Criar interceptors 'src/common/interceptors/FILE_NAME' @done(26-07-09 00:18)
@@ -26,8 +26,24 @@ Interceptos:
 
 Middlewares:
     ✔ que transfere valor via request para controller(@Req() req) @done(26-07-10 14:39)
-    ☐ que executa comando após chamar proximo middleware(next())
+    ✔ que executa comando após chamar proximo middleware(next()) @done(26-07-10 14:51)
     ✔ que retorna erro erro e mata a aplicação (throw new BadGateway) @done(26-07-10 13:31)
     ✔ que retorne valor no cabeçalho @done(26-07-10 13:29)
-
-
+Exception Filters:
+    ✔ Criar Exception filter: @done(26-07-11 14:22)
+        ✔ Para filtrar badRequestException repassando o mesmo statusCode da excessao de origem, url da request e data atual @done(26-07-11 14:22)
+    ☐ Criar um ExceptionFilter para custom exception
+        ☐ Criar um novo exception customizado
+        ☐ Criar exceptionFilter para filtrar por esse novo exception customizado
+    ☐ Implementar exception do BadRequestException de maneria global
+    ☐ Implementar filter exception da nova exceção customizada
+    ☐ Criar filtro que captura todas as exceptions(HttpException)
+Guards:
+    ☐ Criar guard comum
+    ☐ Implementar de maneira global
+    ☐ Implementar pronto para injecao
+    ☐ Permitir acesso apenas se o role for 'admin'
+Decorator param:
+    ☐ Criar decorator param que retorna url
+    ☐ Criar decorator param que retorna o valor do req (utilizaz keyof no parametro data). ex. `@ReqParam('method')` << retorna GET, POST, ...
+    ☐ Exemplo de uso do keyof (typescript)

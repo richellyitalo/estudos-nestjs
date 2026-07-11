@@ -10,6 +10,10 @@ import { SimpleMiddleware } from 'src/common/middlewares/simple.middleware';
 import UsersService from 'src/users/users.service';
 import { User } from 'src/users/entity/user.entity';
 import { SecondMiddleware } from 'src/common/middlewares/second.middleware';
+import { APP_FILTER } from '@nestjs/core';
+import { BadRequestExceptionFilter } from 'src/common/filters/bad-request-exception.filter';
+import GamesService from 'src/games/games.service';
+import Game from 'src/games/entity/game.entity';
 
 // Config: DB
 const dbConnectionOptions: object = {
@@ -35,7 +39,14 @@ const dbConnectionOptions: object = {
     UsersModule,
   ],
   controllers: [AppController],
-  providers: [AppService, UsersService],
+  providers: [
+    AppService,
+    UsersService,
+    {
+      provide: APP_FILTER,
+      useClass: BadRequestExceptionFilter,
+    },
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
