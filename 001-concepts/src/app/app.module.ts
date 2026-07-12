@@ -12,8 +12,8 @@ import { User } from 'src/users/entity/user.entity';
 import { SecondMiddleware } from 'src/common/middlewares/second.middleware';
 import { APP_FILTER } from '@nestjs/core';
 import { BadRequestExceptionFilter } from 'src/common/filters/bad-request-exception.filter';
-import GamesService from 'src/games/games.service';
-import Game from 'src/games/entity/game.entity';
+import { GameNotFoundExceptionFilter } from 'src/common/filters/game-not-found-exception.filter';
+import { AllHttpExceptionFilter } from 'src/common/filters/all-http-exception.filter';
 
 // Config: DB
 const dbConnectionOptions: object = {
@@ -45,6 +45,14 @@ const dbConnectionOptions: object = {
     {
       provide: APP_FILTER,
       useClass: BadRequestExceptionFilter,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: GameNotFoundExceptionFilter,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: AllHttpExceptionFilter,
     },
   ],
 })

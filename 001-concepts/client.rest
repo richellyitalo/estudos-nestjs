@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:3000/
-@token = 123456
+@token = Bearer 123456
 
 ### AppController->Home
 # @name AppControllerHome
@@ -26,11 +26,12 @@ GET {{baseUrl}}base-cli/about
 ### GamesController->all
 # @name GamesControllerAll
 GET {{baseUrl}}games?limit=x&offset=2
-Authorization: Bearer {{token}}
+Authorization: {{token}}
 
 
 ### GamesController->findOne
-GET {{baseUrl}}games/39
+GET {{baseUrl}}games/393
+Authorization: {{token}}
 
 
 ### GamesController->findOneByCategory

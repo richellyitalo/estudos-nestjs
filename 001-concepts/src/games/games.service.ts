@@ -6,6 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CategoryService } from 'src/category/category.service';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
+import { GameNotFoundException } from 'src/common/exceptions/game-not-found.exception';
 
 @Injectable()
 export default class GamesService {
@@ -60,7 +61,8 @@ export default class GamesService {
       },
     });
 
-    if (!game) this.dispatchNotFoundException();
+    // if (!game) this.dispatchNotFoundException();
+    if (!game) throw new GameNotFoundException('Jogo não encontrado 🕹😭');
 
     return game;
   }

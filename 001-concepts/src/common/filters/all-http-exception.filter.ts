@@ -1,24 +1,31 @@
 import {
   ArgumentsHost,
-  BadRequestException,
   Catch,
   ExceptionFilter,
-  Injectable,
+  HttpException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 
-@Catch(BadRequestException)
-@Injectable()
-export class BadRequestExceptionFilter implements ExceptionFilter {
-  catch(exception: BadRequestException, host: ArgumentsHost) {
+@Catch(HttpException)
+export class AllHttpExceptionFilter<
+  T extends HttpException,
+> implements ExceptionFilter {
+  catch(exception: T, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
     const statusCode = exception.getStatus();
+    const exceptionResponse = exception.getResponse();
+
+    const error: object =
+      typeof exceptionResponse === 'string'
+        ? {
+            message: exceptionResponse,
+          }
+        : exceptionResponse;
 
     response.status(statusCode).json({
-      statusCode,
-      error: exception.message,
+      ...error,
       path: request.url,
       timestamp: new Date().toISOString(),
     });

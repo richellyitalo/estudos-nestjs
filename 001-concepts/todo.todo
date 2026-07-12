@@ -17,7 +17,7 @@ Interceptos:
         https://github.com/luizomf/conceitos_nest/commit/70deff108ab55a173110f947bd6e2dd60b0257ac
         ✔ Que adicione um valor ao header (x-token-length) @done(26-07-09 00:29)
         ✔ De execução de tempo da chamada @done(26-07-09 00:29)
-            - utiliza tap (rxjs)
+            utiliza tap (rxjs)
             https://github.com/luizomf/conceitos_nest/commit/e71db18af711bbd9428b4815cc70d5985e43f354
         ✔ Criar interceptor que converter o tipo de um erro para outro @done(26-07-09 19:04)
         ✔ Contador de um array com totalizador num novo índice @done(26-07-09 20:29)
@@ -32,12 +32,12 @@ Middlewares:
 Exception Filters:
     ✔ Criar Exception filter: @done(26-07-11 14:22)
         ✔ Para filtrar badRequestException repassando o mesmo statusCode da excessao de origem, url da request e data atual @done(26-07-11 14:22)
-    ☐ Criar um ExceptionFilter para custom exception
-        ☐ Criar um novo exception customizado
-        ☐ Criar exceptionFilter para filtrar por esse novo exception customizado
-    ☐ Implementar exception do BadRequestException de maneria global
-    ☐ Implementar filter exception da nova exceção customizada
-    ☐ Criar filtro que captura todas as exceptions(HttpException)
+    ✔ Criar um ExceptionFilter para custom exception @done(26-07-11 17:11)
+        ✔ Criar um novo exception customizado @done(26-07-11 17:11)
+        ✔ Criar exceptionFilter para filtrar por esse novo exception customizado @done(26-07-11 17:11)
+    ✔ Implementar exception do BadRequestException de maneria global @done(26-07-11 17:11)
+    ✔ Implementar filter exception da nova exceção customizada @done(26-07-11 17:12)
+    ✔ Criar filtro que captura todas as exceptions(HttpException) @done(26-07-11 22:48)
 Guards:
     ☐ Criar guard comum
     ☐ Implementar de maneira global
