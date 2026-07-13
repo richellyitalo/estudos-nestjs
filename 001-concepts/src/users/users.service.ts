@@ -91,4 +91,14 @@ export default class UsersService {
 
     return omit(userRemoved, ['password']) as User;
   }
+  async getLast(): Promise<User | null> {
+    const user = await this.userRepository.find({
+      take: 1,
+      order: {
+        id: 'desc',
+      },
+    });
+
+    return user[0] ?? null;
+  }
 }

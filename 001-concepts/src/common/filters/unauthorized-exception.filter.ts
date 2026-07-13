@@ -1,20 +1,21 @@
 import {
   ArgumentsHost,
+  UnauthorizedException,
   Catch,
   ExceptionFilter,
-  HttpException,
+  Injectable,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 
-@Catch(HttpException)
-export class AllHttpExceptionFilter<
-  T extends HttpException,
-> implements ExceptionFilter {
-  catch(exception: T, host: ArgumentsHost) {
+@Catch(UnauthorizedException)
+@Injectable()
+export class UnauthorizedExceptionFilter implements ExceptionFilter {
+  catch(exception: UnauthorizedException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
     const statusCode = exception.getStatus();
+
     const exceptionResponse = exception.getResponse();
 
     const error: object =
@@ -26,9 +27,10 @@ export class AllHttpExceptionFilter<
 
     response.status(statusCode).json({
       ...error,
+      statusCode,
+      // error: exception.message,
       path: request.url,
       timestamp: new Date().toISOString(),
-      oi: 'teste',
     });
   }
 }

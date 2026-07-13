@@ -39,11 +39,11 @@ Exception Filters:
     ✔ Implementar filter exception da nova exceção customizada @done(26-07-11 17:12)
     ✔ Criar filtro que captura todas as exceptions(HttpException) @done(26-07-11 22:48)
 Guards:
-    ☐ Criar guard comum
-    ☐ Implementar de maneira global
-    ☐ Implementar pronto para injecao
-    ☐ Permitir acesso apenas se o role for 'admin'
+    ✔ Criar guard comum @done(26-07-13 19:00)
+    ✔ Implementar de maneira global @done(26-07-13 19:00)
+    ✔ Implementar pronto para injecao' @done(26-07-13 19:00)
+    ✔ Permitir acesso apenas se o role for 'admin' @done(26-07-13 19:00)
 Decorator param:
     ☐ Criar decorator param que retorna url
-    ☐ Criar decorator param que retorna o valor do req (utilizaz keyof no parametro data). ex. `@ReqParam('method')` << retorna GET, POST, ...
+    ☐ Criar decorator param que retorna o valor do req (utilizar keyof no parametro data). ex. `@ReqParam('method')` << retorna GET, POST, ...
     ☐ Exemplo de uso do keyof (typescript)

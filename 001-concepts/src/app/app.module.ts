@@ -10,10 +10,12 @@ import { SimpleMiddleware } from 'src/common/middlewares/simple.middleware';
 import UsersService from 'src/users/users.service';
 import { User } from 'src/users/entity/user.entity';
 import { SecondMiddleware } from 'src/common/middlewares/second.middleware';
-import { APP_FILTER } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { BadRequestExceptionFilter } from 'src/common/filters/bad-request-exception.filter';
 import { GameNotFoundExceptionFilter } from 'src/common/filters/game-not-found-exception.filter';
 import { AllHttpExceptionFilter } from 'src/common/filters/all-http-exception.filter';
+import { IsAdminGuard } from 'src/common/guards/is-admin.guard';
+import { UnauthorizedExceptionFilter } from 'src/common/filters/unauthorized-exception.filter';
 
 // Config: DB
 const dbConnectionOptions: object = {
@@ -53,6 +55,14 @@ const dbConnectionOptions: object = {
     {
       provide: APP_FILTER,
       useClass: AllHttpExceptionFilter,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: UnauthorizedExceptionFilter,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: IsAdminGuard,
     },
   ],
 })

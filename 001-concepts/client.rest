@@ -25,12 +25,12 @@ GET {{baseUrl}}base-cli/about
 
 ### GamesController->all
 # @name GamesControllerAll
-GET {{baseUrl}}games?limit=x&offset=2
+GET {{baseUrl}}games?limit=5&offset=2
 Authorization: {{token}}
 
 
 ### GamesController->findOne
-GET {{baseUrl}}games/393
+GET {{baseUrl}}games/39
 Authorization: {{token}}
 
 

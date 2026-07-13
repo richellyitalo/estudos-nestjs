@@ -12,7 +12,11 @@ export class SimpleMiddleware implements NestMiddleware {
     const authorization = req.headers?.authorization;
 
     if (authorization) {
-      req['user'] = await this.userService.findOne(9);
+      const user = await this.userService.getLast();
+      req['user'] = {
+        ...user,
+        role: 'admin',
+      };
     }
     // throw new NotFoundException('Problema na API');
 

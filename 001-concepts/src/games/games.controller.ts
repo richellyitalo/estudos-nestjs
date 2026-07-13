@@ -20,6 +20,8 @@ import { PaginationDto } from 'src/common/dto/pagination.dto';
 import { ParseIdAsNumberPipe } from 'src/common/pipes/parse-id-as-number.pipe';
 import { AuthTokenInterceptor } from 'src/common/interceptors/auth-token.interceptor';
 import type { Request } from 'express';
+import { IdParam } from 'src/common/params/id.param';
+import { RequestParam } from 'src/common/params/request.param';
 
 @UseInterceptors(AuthTokenInterceptor)
 @Controller('games')
@@ -35,11 +37,16 @@ export class GamesController {
 
   @Get(':id')
   // @UsePipes(new ParseIntPipe({ errorHttpStatusCode: HttpStatus.BAD_REQUEST }))
-  findOne(
-    @Param('id', ParseIdAsNumberPipe)
-    id: number,
-  ) {
-    return this.gamesService.findOne(id);
+  async findOne(
+    @IdParam() id: number,
+    @RequestParam('url') url: string,
+    // @Param('id', ParseIdAsNumberPipe)
+    // id: number,
+  ): Promise<any> {
+    return {
+      ...(await this.gamesService.findOne(id)),
+      url,
+    };
   }
 
   @Get(':categorySlug/:id')
