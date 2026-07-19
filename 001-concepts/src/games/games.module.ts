@@ -11,7 +11,7 @@ import {
 } from 'src/common/constants/config.constant';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Game]), CategoryModule],
+  imports: [TypeOrmModule.forFeature([Game]), forwardRef(() => CategoryModule)],
   controllers: [GamesController],
   providers: [
     GamesService,
