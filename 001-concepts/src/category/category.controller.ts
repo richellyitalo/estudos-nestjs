@@ -8,10 +8,13 @@ import {
   Delete,
   Query,
   ParseIntPipe,
+  Inject,
 } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
+import GamesService from 'src/games/games.service';
+import { APP_NAME_INDEX } from 'src/common/constants/config.constant';
 
 interface QueryAll {
   limit: string;
@@ -20,7 +23,12 @@ interface QueryAll {
 
 @Controller('categories')
 export class CategoryController {
-  constructor(private readonly categoryService: CategoryService) {}
+  constructor(
+    private readonly categoryService: CategoryService,
+    private readonly gameService: GamesService,
+    @Inject(APP_NAME_INDEX)
+    private readonly appName: string,
+  ) {}
 
   @Post()
   async create(@Body() createCategoryDto: CreateCategoryDto) {
@@ -29,6 +37,7 @@ export class CategoryController {
 
   @Get()
   async findAll(@Query() query: QueryAll) {
+    console.log('APP_NAME em category->', this.appName);
     const { limit = 10, offset = 0 } = query;
     return await this.categoryService.findAll();
   }

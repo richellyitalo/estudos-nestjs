@@ -37,6 +37,7 @@ Authorization: {{token}}
 ### GamesController->findOneByCategory
 # @name GamesControllerByCategoryNameAndId
 GET {{baseUrl}}games/terror/39
+Authorization: {{token}}
 
 
 ### GamesController create
@@ -73,7 +74,7 @@ DELETE {{baseUrl}}games/1
 ### CategoryController->all
 # @name CategoryControllerAll
 GET {{baseUrl}}categories?pagination=5&offset=3
-
+Authorization: {{token}}
 
 ### CategoriesController->findOne
 GET {{baseUrl}}categories/25

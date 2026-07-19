@@ -7,12 +7,14 @@ import { Repository } from 'typeorm';
 import { CategoryService } from 'src/category/category.service';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
 import { GameNotFoundException } from 'src/common/exceptions/game-not-found.exception';
+import { GamesUtils } from './games.utils';
 
 @Injectable()
 export default class GamesService {
   constructor(
     @InjectRepository(Game) private readonly gameRepository: Repository<Game>,
     private readonly categoryService: CategoryService,
+    private readonly gamesUtils: GamesUtils,
   ) {}
 
   private dispatchNotFoundException(message?: string): never {
@@ -64,7 +66,7 @@ export default class GamesService {
     // if (!game) this.dispatchNotFoundException();
     if (!game) throw new GameNotFoundException('Jogo não encontrado 🕹😭');
 
-    return game;
+    return { ...game, note: this.gamesUtils.getNoteGame(game.name) } as Game;
   }
 
   async findOneByIdInCategorySlug(

@@ -1,5 +1,6 @@
 Outros:
     ☐ Realizar estudo de Observable com rxjs
+
 DB:
     ✔ +modulo users @done(26-07-05 23:27)
     ✔ vincular entidades entre entidades (ManyToOne, OneToMany, JoinColumn) @done(26-07-06 12:02)
@@ -29,6 +30,7 @@ Middlewares:
     ✔ que executa comando após chamar proximo middleware(next()) @done(26-07-10 14:51)
     ✔ que retorna erro erro e mata a aplicação (throw new BadGateway) @done(26-07-10 13:31)
     ✔ que retorne valor no cabeçalho @done(26-07-10 13:29)
+
 Exception Filters:
     ✔ Criar Exception filter: @done(26-07-11 14:22)
         ✔ Para filtrar badRequestException repassando o mesmo statusCode da excessao de origem, url da request e data atual @done(26-07-11 14:22)
@@ -38,12 +40,28 @@ Exception Filters:
     ✔ Implementar exception do BadRequestException de maneria global @done(26-07-11 17:11)
     ✔ Implementar filter exception da nova exceção customizada @done(26-07-11 17:12)
     ✔ Criar filtro que captura todas as exceptions(HttpException) @done(26-07-11 22:48)
+
 Guards:
     ✔ Criar guard comum @done(26-07-13 19:00)
     ✔ Implementar de maneira global @done(26-07-13 19:00)
     ✔ Implementar pronto para injecao' @done(26-07-13 19:00)
     ✔ Permitir acesso apenas se o role for 'admin' @done(26-07-13 19:00)
+
 Decorator param:
-    ☐ Criar decorator param que retorna url
-    ☐ Criar decorator param que retorna o valor do req (utilizar keyof no parametro data). ex. `@ReqParam('method')` << retorna GET, POST, ...
-    ☐ Exemplo de uso do keyof (typescript)
+    ✔ Criar decorator param que retorna url @done(26-07-13 22:42)
+    ✔ Criar decorator param que retorna o valor do req (utilizar keyof no parametro data). ex. `@ReqParam('method')` << retorna GET, POST, ... @done(26-07-13 22:42)
+    ✔ Exemplo de uso do keyof (typescript) @done(26-07-13 22:42)
+
+Injeção de depentência:
+    ✔ Criar classe injectable e fornecer em algum módulo nos 'providers' @done(26-07-19 07:16)
+    ✔ Provera  classe com `provide, useClass` @done(26-07-19 07:25)
+    ✔ Simular Dependência circular: @done(26-07-19 07:43)
+        ✔ Exportar classe do módulo e importar APENAS o módulo em outro @done(26-07-19 07:43)
+        ✔ Resolver dependência circular com `forwardRef()` @done(26-07-19 07:43)
+    ✔ Realizar cenário com`provide, useValue` @done(26-07-19 07:43)
+    ✔ Prover valor no `provide` com `@Inject()` no constructor @done(26-07-19 08:04)
+        ✔ Utilizar constantes para prover o provide como string @done(26-07-19 08:04)
+        ✔ Reutilizar o provider em outro módulo ao importar este módulo @done(26-07-19 08:04)
+    
+    
+

@@ -17,7 +17,6 @@ export const IdParam = createParamDecorator(
       throw new BadRequestException('ID não informado.');
     }
 
-
     return +id;
   },
 );

@@ -5,6 +5,7 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  Inject,
   Param,
   ParseIntPipe,
   Patch,
@@ -22,16 +23,21 @@ import { AuthTokenInterceptor } from 'src/common/interceptors/auth-token.interce
 import type { Request } from 'express';
 import { IdParam } from 'src/common/params/id.param';
 import { RequestParam } from 'src/common/params/request.param';
+import { APP_NAME_INDEX } from 'src/common/constants/config.constant';
 
 @UseInterceptors(AuthTokenInterceptor)
 @Controller('games')
 export class GamesController {
-  constructor(private readonly gamesService: GamesService) {}
+  constructor(
+    private readonly gamesService: GamesService,
+    @Inject(APP_NAME_INDEX)
+    private readonly appName: string,
+  ) {}
 
   @Get()
   // @UseInterceptors(CountArrayLengthInterceptorInterceptor)
   async all(@Query() paginationDto: PaginationDto, @Req() request: Request) {
-    console.log('GamesController@Request', request['user']);
+    console.log('APP_NAME=>', this.appName);
     return await this.gamesService.getAll(paginationDto);
   }
 
