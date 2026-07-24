@@ -24,6 +24,7 @@ import type { Request } from 'express';
 import { IdParam } from 'src/common/params/id.param';
 import { RequestParam } from 'src/common/params/request.param';
 import { APP_NAME_INDEX } from 'src/common/constants/config.constant';
+import { RegexContract } from 'src/common/utils/regex.contract';
 
 @UseInterceptors(AuthTokenInterceptor)
 @Controller('games')
@@ -32,6 +33,7 @@ export class GamesController {
     private readonly gamesService: GamesService,
     @Inject(APP_NAME_INDEX)
     private readonly appName: string,
+    private readonly regexContract: RegexContract,
   ) {}
 
   @Get()
@@ -49,9 +51,11 @@ export class GamesController {
     // @Param('id', ParseIdAsNumberPipe)
     // id: number,
   ): Promise<any> {
+    const game = await this.gamesService.findOne(id);
     return {
-      ...(await this.gamesService.findOne(id)),
+      ...(game || {}),
       url,
+      nameAffected: this.regexContract.execute(game?.name ?? ''),
     };
   }
 

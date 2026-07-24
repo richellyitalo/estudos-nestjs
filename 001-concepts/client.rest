@@ -55,13 +55,13 @@ Content-type: application/json
 
 ### GamesController->patch
 PATCH {{baseUrl}}games/17
+Authorization: {{token}}
 Content-type: application/json
 
 {
     "name": "Bomber Man 3",
     "categoryId": 27
 }
-
 
 ### GamesController->delete
 DELETE {{baseUrl}}games/1

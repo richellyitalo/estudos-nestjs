@@ -37,7 +37,6 @@ export class CategoryController {
 
   @Get()
   async findAll(@Query() query: QueryAll) {
-    console.log('APP_NAME em category->', this.appName);
     const { limit = 10, offset = 0 } = query;
     return await this.categoryService.findAll();
   }

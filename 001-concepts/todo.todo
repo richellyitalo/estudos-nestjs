@@ -62,6 +62,12 @@ Injeção de depentência:
     ✔ Prover valor no `provide` com `@Inject()` no constructor @done(26-07-19 08:04)
         ✔ Utilizar constantes para prover o provide como string @done(26-07-19 08:04)
         ✔ Reutilizar o provider em outro módulo ao importar este módulo @done(26-07-19 08:04)
+    ✔ Criar classe abstrata @done(26-07-24 14:11)
+    ✔ Criar 2 classes que extende dessa abstrata @done(26-07-24 14:11)
+    ✔ Utilizar uma seguindo regra ternária no useValue @done(26-07-24 14:11)
+    ☐ Realizar a mesma injeção com @Inject(NOME_UTILIZADO_NO_VALUE)
+    ☐ Transformar as classes abstratas em interfaces
+
     
     
 
