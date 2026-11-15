@@ -18,10 +18,8 @@ import GamesService from './games.service';
 import { CreateGameDto } from './dto/create-game-dto';
 import { UpdateGameDto } from './dto/update-game-dto';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
-import { ParseIdAsNumberPipe } from 'src/common/pipes/parse-id-as-number.pipe';
 import { AuthTokenInterceptor } from 'src/common/interceptors/auth-token.interceptor';
-import type { Request } from 'express';
-import { IdParam } from 'src/common/params/id.param';
+import type { Request } from 'express';import { IdParam } from 'src/common/params/id.param';
 import { RequestParam } from 'src/common/params/request.param';
 import { APP_NAME_INDEX } from 'src/common/constants/config.constant';
 import { RegexContract } from 'src/common/utils/regex.contract';
@@ -38,6 +36,7 @@ export class GamesController {
 
   @Get()
   // @UseInterceptors(CountArrayLengthInterceptorInterceptor)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async all(@Query() paginationDto: PaginationDto, @Req() request: Request) {
     console.log('APP_NAME=>', this.appName);
     return await this.gamesService.getAll(paginationDto);
